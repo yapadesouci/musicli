@@ -2,7 +2,8 @@
   "name": "musicli",
   "version": "1.0.0",
   "description": "Music player controlled by interactive cli.",
-  "homepage": "",
+  "homepage": "https://github.com/yapadesouci/musicli",
+  "bugs": "https://github.com/yapadesouci/musicli/issues",
   "author": {
     "name": "yapadesouci",
     "email": "franck.anso@gmail.com",
