@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
@@ -15,8 +16,8 @@ var isparta = require('isparta');
 // when they're loaded
 require('babel-core/register');
 
-gulp.task('static', function () {
-  return gulp.src('**/*.js')
+gulp.task('lint', function () {
+  return gulp.src(['lib/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -71,9 +72,19 @@ gulp.task('babel', ['clean'], function () {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('shebang', ['babel'], function () {
+  var file = './dist/index.js';
+  var data = fs.readFileSync(file); //read existing contents into data
+  var fd = fs.openSync(file, 'w+');
+  var buffer = new Buffer('#!/usr/bin/env node\n');
+  fs.writeSync(fd, buffer, 0, buffer.length); //write new data
+  fs.writeSync(fd, data, 0, data.length); //append old data
+  fs.close(fd);
+});
+
 gulp.task('clean', function () {
   return del('dist');
 });
 
-gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls']);
+gulp.task('prepublish', ['nsp', 'shebang']);
+gulp.task('default', ['lint', 'test', 'coveralls']);
