@@ -13,6 +13,7 @@
     "dist"
   ],
   "main": "dist/index.js",
+  "bin": "dist/index.js",
   "keywords": [
     "music",
     "player",
