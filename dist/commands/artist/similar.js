@@ -21,7 +21,7 @@ module.exports = function (app) {
 
     Echonest.init(apikey);
 
-    undefined.prompt([{
+    app.vorpal.ui.prompt([{
       type: 'checkbox',
       name: 'leaves',
       message: 'Which one do you want?',
@@ -56,7 +56,7 @@ module.exports = function (app) {
             choices: leaf
           });
         });
-        undefined.prompt(prompt, function (result) {
+        app.vorpal.ui.prompt(prompt, function (result) {
           Object.keys(result).forEach(function (key) {
             if (result[key] !== 0) {
               var artists = result[key];

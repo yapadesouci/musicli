@@ -10,7 +10,7 @@ module.exports = function (app) {
       return;
     }
 
-    undefined.prompt([{
+    app.vorpal.ui.prompt([{
       type: 'checkbox',
       name: 'leaves',
       message: 'Which one do you want remove?',
