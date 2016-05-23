@@ -50,8 +50,25 @@ var Playlist = function () {
   }, {
     key: 'fetchRandomSong',
     value: function fetchRandomSong() {
+      if (!this.checkSongExist()) {
+        return undefined;
+      }
+
       var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
       return songs[Math.floor(Math.random() * songs.length)];
+    }
+  }, {
+    key: 'checkSongExist',
+    value: function checkSongExist() {
+      var result = false;
+
+      this.tracks.forEach(function (artist) {
+        if (artist.length > 0) {
+          result = true;
+        }
+      });
+
+      return result;
     }
   }]);
 

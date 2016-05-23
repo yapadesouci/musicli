@@ -8,7 +8,7 @@ var Promise = require('bluebird');
 var request = Promise.promisifyAll(require('request'));
 var jsdom = Promise.promisifyAll(require('jsdom'));
 
-var BASE_URI = 'https://www.song365.name';
+var BASE_URI = 'https://www.song365mp3.com';
 
 var Song365 = function () {
   function Song365() {
