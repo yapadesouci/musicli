@@ -67,20 +67,25 @@ $ musicli> help
 
 ## Troubleshooting
 
-Q: How can I start?
-A: Start by calling the init command to initialize your Echonest Apikey. You can freely retrieve one [here](https://developer.echonest.com).
+### How can I start?
 
-Q: Can I search multiple artists at the same time?
-A: No, you can't it's one artist at a time.
+Start by calling the init command to initialize your Echonest Apikey. You can freely retrieve one [here](https://developer.echonest.com).
 
-Q: How can I select artists?
-A: Press the SPACE bar to check/uncheck selectboxes.
+### Can I search multiple artists at the same time?
 
-Q: It's always complaining 'No playlist loaded...'
-A: You must create a playlist and load it with the load command.
+No, you can't. It's one artist at a time.
 
-Q: I have created a playlist, selected some artists but when I play song nothing happen.
-A: Verify that MPlayer is installed. If yes, don't forget to refresh your playlist.
+### How can I select artists?
+
+Press the SPACE bar to check/uncheck selectboxes.
+
+### I always a 'No playlist loaded...' message.
+
+You must create a playlist and load it with the load command.
+
+### I have created a playlist, selected some artists but when I run the play command, nothing happen.
+
+Verify that MPlayer is installed. If yes, don't forget to refresh your playlist. Refreshing can take a long time. Please be patient!
 
 ## License
 
