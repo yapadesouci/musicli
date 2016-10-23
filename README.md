@@ -4,7 +4,7 @@
 ## Dependencies
 
 Musicli is based on:
-- Echonest API for artists;
+- Spotify API for artists;
 - Song365 for mp3 streams;
 - MPlayer to play mp3 stream;
 
