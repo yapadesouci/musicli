@@ -1,7 +1,7 @@
 'use strict';
 
 var chalk = require('chalk');
-var Echonest = require('echonestjs');
+var Spotify = require('spotify');
 
 module.exports = function (app) {
   app.vorpal.command('search <artist...>', 'Search an artist.').action(function (args, cb) {
@@ -13,23 +13,20 @@ module.exports = function (app) {
       return;
     }
 
-    var apikey = app.vorpal.localStorage.getItem('echonest');
-    if (!apikey) {
-      app.vorpal.log(chalk.red('No Echonest apikey registered...'));
-      cb();
-      return;
-    }
-
-    Echonest.init(apikey);
-    Echonest.get('artist/search', { name: search, fuzzy_match: true }, function (error, result) {
-      /* eslint camelcase: "off" */
+    Spotify.search({
+      type: 'artist',
+      query: search
+    }, function (error, result) {
       if (error) {
         app.vorpal.log(error);
         cb();
         return;
       }
 
-      var artists = result.response.artists || [];
+      var artists = result.artists.items.slice(0, 5).map(function (item) {
+        return item.name;
+      }) || [];
+
       if (artists.length === 0) {
         app.vorpal.log(chalk.yellow('No artist found...'));
         cb();

@@ -8,13 +8,6 @@ Musicli is based on:
 - Song365 for mp3 streams;
 - MPlayer to play mp3 stream;
 
-## Before starting
-
-### Echonest Apikey
-
-You must have a Echonest Apikey. It's totally free. You can get one [here](https://developer.echonest.com).
-One you have one, don't forget to enter it with the init command.
-
 ### MPlayer
 
 Musicli uses MPlayer to play mp3. 
@@ -50,9 +43,7 @@ $ musicli> help
 
     help [command...]   Provides help for a given command.
     exit                Exits application.
-    init                Initialize your Echonest ApiKey.
     search <artist...>  Search an artist.
-    similar             Search similar artists based on the current playlist.
     all                 List all playlist created.
     create <name>       Create a playlist.
     load <name>         Load playlist <name>
@@ -66,10 +57,6 @@ $ musicli> help
 ```
 
 ## Troubleshooting
-
-### How can I start?
-
-Start by calling the init command to initialize your Echonest Apikey. You can freely retrieve one [here](https://developer.echonest.com).
 
 ### Can I search multiple artists at the same time?
 
@@ -90,7 +77,6 @@ Verify that MPlayer is installed. If yes, don't forget to refresh your playlist.
 ## License
 
 MIT © [yapadesouci](https://github.com/yapadesouci)
-
 
 [npm-image]: https://badge.fury.io/js/musicli.svg
 [npm-url]: https://npmjs.org/package/musicli

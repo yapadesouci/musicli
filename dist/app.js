@@ -46,9 +46,7 @@ var App = function () {
     });
     this.spinner = new Spinner(this.vorpal);
 
-    require('./commands/artist/init')(this);
     require('./commands/artist/search')(this);
-    require('./commands/artist/similar')(this);
 
     require('./commands/playlist/all')(this);
     require('./commands/playlist/create')(this);
