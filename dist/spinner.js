@@ -19,8 +19,8 @@ var Spinner = function () {
     value: function start() {
       var _this = this;
 
-      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      var interval = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
+      var message = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+      var interval = arguments.length <= 1 || arguments[1] === undefined ? 250 : arguments[1];
 
       this.stop();
       this.message = message;
