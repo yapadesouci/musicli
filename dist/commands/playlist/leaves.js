@@ -7,7 +7,7 @@ module.exports = function (app) {
     if (!app.playlist && !args.name) {
       app.vorpal.log(chalk.red('No playlist loaded...'));
     } else if (args.name) {
-      var playlist = JSON.parse(app.vorpal.localStorage.getItem(args.name));
+      var playlist = JSON.parse(app.localStorage.getItem(args.name));
       if (playlist) {
         if (playlist.leaves.length === 0) {
           app.vorpal.log(chalk.yellow('No leaves found...'));

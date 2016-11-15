@@ -9,6 +9,7 @@ var chalk = require('chalk');
 var vorpal = require('vorpal');
 var MPlayer = require('mplayer');
 var Spinner = require('./spinner').Spinner;
+var LocalStorage = require('node-localstorage').LocalStorage;
 
 var App = function () {
   function App() {
@@ -16,10 +17,9 @@ var App = function () {
 
     _classCallCheck(this, App);
 
-    console.log(os.tmpdir());
-
+    this.localStorage = new LocalStorage((process.env.HOME || process.env.USERPROFILE) + '/.musicli');
     this.vorpal = vorpal();
-    this.vorpal.localStorage('musicli').delimiter('musicli>');
+    this.vorpal.delimiter('musicli>');
 
     this.player = new MPlayer();
     this.player.on('status', function (data) {

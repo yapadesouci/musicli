@@ -15,7 +15,7 @@ module.exports = function (app) {
     app.playlist.refresh().then(function (streams) {
       app.spinner.stop();
       app.playlist.tracks = streams;
-      app.vorpal.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
+      app.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
       app.vorpal.log(chalk.green('Playlist ' + app.playlist.name + ' successfully refreshed!'));
       cb();
     });

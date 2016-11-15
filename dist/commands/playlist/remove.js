@@ -23,7 +23,7 @@ module.exports = function (app) {
       }
 
       app.playlist.removeLeaves(artists.leaves);
-      app.vorpal.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
+      app.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
       app.vorpal.log(chalk.green('Artists removed: ' + artists.leaves.join(', ')));
       cb();
     });

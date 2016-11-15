@@ -46,7 +46,7 @@ module.exports = function (app) {
         }
 
         app.playlist.addLeaves(artists.leaves);
-        app.vorpal.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
+        app.localStorage.setItem(app.playlist.name, JSON.stringify(app.playlist));
         app.vorpal.log(chalk.green(artists.leaves.join(', ') + ' successfully added!'));
         cb();
       });

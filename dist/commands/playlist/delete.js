@@ -19,7 +19,7 @@ module.exports = function (app) {
       app.playlist = undefined;
     }
 
-    app.vorpal.localStorage.removeItem(args.name);
+    app.localStorage.removeItem(args.name);
     app.vorpal.log(chalk.green('Playlist ' + args.name + ' deleted!'));
     cb();
   });

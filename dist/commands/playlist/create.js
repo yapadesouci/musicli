@@ -16,7 +16,7 @@ module.exports = function (app) {
       name: args.name
     });
 
-    app.vorpal.localStorage.setItem(args.name, JSON.stringify(playlist));
+    app.localStorage.setItem(args.name, JSON.stringify(playlist));
     app.vorpal.log(chalk.green('Playlist \'' + args.name + '\' created.'));
     cb();
   });
