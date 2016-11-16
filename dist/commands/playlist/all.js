@@ -1,12 +1,11 @@
 'use strict';
 
-var os = require('os');
 var fs = require('fs');
 var chalk = require('chalk');
 
 module.exports = function (app) {
   app.vorpal.command('all', 'List all playlist created.').action(function (args, cb) {
-    var files = fs.readdirSync(os.tmpdir() + '/.local_storage_musicli');
+    var files = fs.readdirSync((process.env.HOME || process.env.USERPROFILE) + '/.musicli');
     files = files.filter(function (file) {
       return file !== 'echonest';
     });

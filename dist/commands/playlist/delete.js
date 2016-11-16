@@ -1,13 +1,12 @@
 'use strict';
 
-var os = require('os');
 var fs = require('fs');
 var chalk = require('chalk');
 
 module.exports = function (app) {
   app.vorpal.command('delete <name>', 'Delete playlist <name>').action(function (args, cb) {
-    var files = fs.readdirSync(os.tmpdir() + '/.local_storage_musicli');
-    if (args.name === 'echonest' || files.indexOf(args.name) === -1) {
+    var files = fs.readdirSync((process.env.HOME || process.env.USERPROFILE) + '/.musicli');
+    if (files.indexOf(args.name) === -1) {
       app.vorpal.log(chalk.red('Unknown playlist...'));
       cb();
       return;

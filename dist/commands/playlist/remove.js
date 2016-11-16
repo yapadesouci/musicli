@@ -5,7 +5,7 @@ var chalk = require('chalk');
 module.exports = function (app) {
   app.vorpal.command('remove', 'Remove an artist.').action(function (args, cb) {
     if (!app.playlist) {
-      app.vorpal.log(chalk.ref('No playlist loaded...'));
+      app.vorpal.log(chalk.red('No playlist loaded...'));
       cb();
       return;
     }
