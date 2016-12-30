@@ -1,6 +1,6 @@
 {
   "name": "musicli",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Music player controlled by interactive cli.",
   "homepage": "https://github.com/yapadesouci/musicli",
   "bugs": "https://github.com/yapadesouci/musicli/issues",
