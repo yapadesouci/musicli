@@ -5,8 +5,8 @@ var http = require('http');
 var https = require('https');
 var App = require('./app').App;
 
-http.globalAgent.maxSockets = 2;
-https.globalAgent.maxSockets = 2;
+http.globalAgent.maxSockets = 6;
+https.globalAgent.maxSockets = 6;
 
 var app = new App();
 app.run();

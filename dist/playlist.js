@@ -4,6 +4,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var deasync = require('deasync');
+var request = require('request');
 var Song365 = require('./song365').Song365;
 
 var Playlist = function () {
@@ -55,7 +57,13 @@ var Playlist = function () {
       }
 
       var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
-      return songs[Math.floor(Math.random() * songs.length)];
+      var songUri = songs[Math.floor(Math.random() * songs.length)];
+
+      if (!this.checkStreamExist(songUri)) {
+        return this.fetchRandomSong();
+      }
+
+      return songUri;
     }
   }, {
     key: 'checkSongExist',
@@ -69,6 +77,20 @@ var Playlist = function () {
       });
 
       return result;
+    }
+  }, {
+    key: 'checkStreamExist',
+    value: function checkStreamExist(streamUri) {
+      var ret = void 0;
+
+      request.get(streamUri, function (err, response) {
+        ret = !err && response.statusCode === 200;
+      });
+      while (ret === undefined) {
+        deasync.sleep(100);
+      }
+
+      return ret;
     }
   }]);
 
