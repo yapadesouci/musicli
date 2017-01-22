@@ -1,6 +1,6 @@
 {
   "name": "musicli",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Music player controlled by interactive cli.",
   "homepage": "https://github.com/yapadesouci/musicli",
   "bugs": "https://github.com/yapadesouci/musicli/issues",
@@ -54,6 +54,7 @@
   "dependencies": {
     "bluebird": "^3.3.5",
     "chalk": "^1.1.3",
+    "deasync": "^0.1.9",
     "jsdom": "^8.4.0",
     "mplayer": "^2.0.1",
     "node-localstorage": "^1.3.0",
