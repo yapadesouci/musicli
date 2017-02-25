@@ -8,7 +8,7 @@ var Promise = require('bluebird');
 var request = Promise.promisifyAll(require('request'));
 var jsdom = Promise.promisifyAll(require('jsdom'));
 
-var BASE_URI = 'https://www.yourmusics.net';
+var BASE_URI = 'https://www.yourmusics.club';
 
 var Song365 = function () {
   function Song365() {
@@ -38,6 +38,10 @@ var Song365 = function () {
     key: 'fetchSongsURI',
     value: function fetchSongsURI(tracks) {
       return Promise.map(tracks, function (track) {
+        if (track === '') {
+          return [];
+        }
+
         return jsdom.envAsync(BASE_URI + track, ['http://code.jquery.com/jquery.js']).then(function (window) {
           var $ = window.jQuery;
 
@@ -57,6 +61,10 @@ var Song365 = function () {
     key: 'fetchStreamsURI',
     value: function fetchStreamsURI(songs) {
       return Promise.map(songs, function (song) {
+        if (song.length === 0) {
+          return [];
+        }
+
         return Promise.map(song, function (dl) {
           return request.getAsync(encodeURI(dl)).then(function (html) {
             var re = /var hqurl = '(.*)'/gi;
@@ -82,8 +90,11 @@ var Song365 = function () {
                 stream[i].push(results[i][j]);
               }
             }
+          } else {
+            stream.push([]);
           }
         }
+
         return stream;
       });
     }

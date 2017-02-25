@@ -16,6 +16,7 @@ var App = function () {
 
     _classCallCheck(this, App);
 
+    this.lastFetchRandomSong = new Date().getTime();
     this.localStorage = new LocalStorage((process.env.HOME || process.env.USERPROFILE) + '/.musicli');
     this.vorpal = vorpal();
     this.vorpal.delimiter('musicli>');
@@ -38,7 +39,22 @@ var App = function () {
       }
     });
     this.player.on('stop', function () {
-      _this.player.openFile(_this.playlist.fetchRandomSong());
+      if (new Date().getTime() - _this.lastFetchRandomSong < 5000) {
+        _this.vorpal.log(chalk.yellow('Debug: Ignore fetch random song burst.'));
+        return;
+      }
+
+      _this.lastFetchRandomSong = new Date().getTime();
+
+      var that = _this;
+
+      _this.playlist.fetchRandomSong(function (err, response) {
+        if (err) {
+          that.vorpal.log(chalk.red('Error: ' + err));
+        } else {
+          that.player.openFile(response);
+        }
+      });
     });
     this.player.on('error', function (error) {
       _this.vorpal.log(chalk.red('Error: ' + error));

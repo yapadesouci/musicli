@@ -48,7 +48,7 @@ $ musicli> help
     create <name>       Create a playlist.
     load <name>         Load playlist <name>
     delete <name>       Delete playlist <name>
-    leaves [name]       Show playlist leaves.
+    leaves              Show leaves.
     remove              Remove an artist.
     refresh             Refresh playlist links.
     play                Play song in playlist.

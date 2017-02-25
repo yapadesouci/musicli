@@ -10,7 +10,21 @@ module.exports = function (app) {
       return;
     }
 
-    app.player.openFile(app.playlist.fetchRandomSong());
-    cb();
+    app.lastFetchRandomSong = new Date().getTime();
+    app.playlist.fetchRandomSong(function (err, response) {
+      if (err) {
+        cb();
+        return;
+      }
+
+      if (!response) {
+        app.vorpal.log(chalk.red('No song found...'));
+        cb();
+        return;
+      }
+
+      app.player.openFile(response);
+      cb();
+    });
   });
 };

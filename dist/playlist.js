@@ -4,7 +4,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var deasync = require('deasync');
 var request = require('request');
 var Song365 = require('./song365').Song365;
 
@@ -51,19 +50,27 @@ var Playlist = function () {
     }
   }, {
     key: 'fetchRandomSong',
-    value: function fetchRandomSong() {
+    value: function fetchRandomSong(callback) {
+      var _this3 = this;
+
       if (!this.checkSongExist()) {
-        return undefined;
+        callback(null, undefined);
+        return;
       }
 
-      var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
-      var songUri = songs[Math.floor(Math.random() * songs.length)];
+      var songUri = void 0;
+      do {
+        var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
+        songUri = songs[Math.floor(Math.random() * songs.length)];
+      } while (!songUri);
 
-      if (!this.checkStreamExist(songUri)) {
-        return this.fetchRandomSong();
-      }
-
-      return songUri;
+      request(songUri, function (err, response) {
+        if (!err && response.statusCode === 200) {
+          callback(null, songUri);
+        } else {
+          _this3.fetchRandomSong(callback);
+        }
+      });
     }
   }, {
     key: 'checkSongExist',
@@ -77,20 +84,6 @@ var Playlist = function () {
       });
 
       return result;
-    }
-  }, {
-    key: 'checkStreamExist',
-    value: function checkStreamExist(streamUri) {
-      var ret = void 0;
-
-      request.get(streamUri, function (err, response) {
-        ret = !err && response.statusCode === 200;
-      });
-      while (ret === undefined) {
-        deasync.sleep(100);
-      }
-
-      return ret;
     }
   }]);
 
