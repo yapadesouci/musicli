@@ -39,7 +39,7 @@ var App = function () {
       }
     });
     this.player.on('stop', function () {
-      if (new Date().getTime() - _this.lastFetchRandomSong < 5000) {
+      if (new Date().getTime() - _this.lastFetchRandomSong < 10000) {
         _this.vorpal.log(chalk.yellow('Debug: Ignore fetch random song burst.'));
         return;
       }
