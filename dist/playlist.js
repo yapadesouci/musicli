@@ -4,7 +4,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var request = require('request');
+var superagent = require('superagent');
 var Song365 = require('./song365').Song365;
 
 var Playlist = function () {
@@ -50,27 +50,23 @@ var Playlist = function () {
     }
   }, {
     key: 'fetchRandomSong',
-    value: function fetchRandomSong(callback) {
-      var _this3 = this;
-
+    value: async function fetchRandomSong() {
       if (!this.checkSongExist()) {
-        callback(null, undefined);
-        return;
+        return undefined;
       }
 
       var songUri = void 0;
       do {
-        var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
-        songUri = songs[Math.floor(Math.random() * songs.length)];
+        try {
+          var songs = this.tracks[Math.floor(Math.random() * this.tracks.length)];
+          songUri = songs[Math.floor(Math.random() * songs.length)];
+          await superagent.get(songUri); // eslint-disable-line no-unused-expressions
+        } catch (err) {
+          songUri = undefined;
+        }
       } while (!songUri);
 
-      request(songUri, function (err, response) {
-        if (!err && response.statusCode === 200) {
-          callback(null, songUri);
-        } else {
-          _this3.fetchRandomSong(callback);
-        }
-      });
+      return songUri;
     }
   }, {
     key: 'checkSongExist',

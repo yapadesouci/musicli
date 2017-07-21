@@ -39,21 +39,10 @@ var App = function () {
       }
     });
     this.player.on('stop', function () {
-      if (new Date().getTime() - _this.lastFetchRandomSong < 10000) {
-        _this.vorpal.log(chalk.yellow('Debug: Ignore fetch random song burst.'));
-        return;
-      }
-
-      _this.lastFetchRandomSong = new Date().getTime();
-
       var that = _this;
 
-      _this.playlist.fetchRandomSong(function (err, response) {
-        if (err) {
-          that.vorpal.log(chalk.red('Error: ' + err));
-        } else {
-          that.player.openFile(response);
-        }
+      _this.playlist.fetchRandomSong().then(function (songUri) {
+        that.player.openFile(songUri);
       });
     });
     this.player.on('error', function (error) {

@@ -87,4 +87,4 @@ gulp.task('clean', function () {
 });
 
 gulp.task('prepublish', ['nsp', 'shebang']);
-gulp.task('default', ['lint', 'test', 'coveralls']);
+gulp.task('default', ['lint']);

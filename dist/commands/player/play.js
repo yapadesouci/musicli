@@ -10,20 +10,20 @@ module.exports = function (app) {
       return;
     }
 
-    app.lastFetchRandomSong = new Date().getTime();
-    app.playlist.fetchRandomSong(function (err, response) {
-      if (err) {
-        cb();
-        return;
-      }
+    if (!app.playlist) {
+      app.vorpal.log(chalk.red('No playlist loaded...'));
+      cb();
+      return;
+    }
 
-      if (!response) {
+    app.playlist.fetchRandomSong().then(function (songUri) {
+      if (!songUri) {
         app.vorpal.log(chalk.red('No song found...'));
         cb();
         return;
       }
 
-      app.player.openFile(response);
+      app.player.openFile(songUri);
       cb();
     });
   });
