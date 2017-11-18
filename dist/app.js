@@ -16,12 +16,12 @@ var App = function () {
 
     _classCallCheck(this, App);
 
-    this.lastFetchRandomSong = new Date().getTime();
     this.localStorage = new LocalStorage((process.env.HOME || process.env.USERPROFILE) + '/.musicli');
     this.vorpal = vorpal();
     this.vorpal.delimiter('musicli>');
 
     this.player = new MPlayer();
+    this.player.isPaused = false;
     this.player.on('status', function (data) {
       if (data.filename) {
         var re = /http:\/\/.*\/(.*)_.*.mp3/gi;

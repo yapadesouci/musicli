@@ -10,6 +10,7 @@ module.exports = function (app) {
       return;
     }
 
+    app.player.isPaused = true;
     app.player.pause();
     cb();
   });

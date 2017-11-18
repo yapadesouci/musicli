@@ -16,15 +16,21 @@ module.exports = function (app) {
       return;
     }
 
-    app.playlist.fetchRandomSong().then(function (songUri) {
-      if (!songUri) {
-        app.vorpal.log(chalk.red('No song found...'));
-        cb();
-        return;
-      }
+    if (!app.player.isPaused) {
+      app.playlist.fetchRandomSong().then(function (songUri) {
+        if (!songUri) {
+          app.vorpal.log(chalk.red('No song found...'));
+          cb();
+          return;
+        }
 
-      app.player.openFile(songUri);
-      cb();
-    });
+        app.player.openFile(songUri);
+      });
+    } else {
+      app.player.isPaused = false;
+      app.player.play();
+    }
+
+    cb();
   });
 };
