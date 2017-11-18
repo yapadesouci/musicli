@@ -1,6 +1,6 @@
 {
   "name": "musicli",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Music player controlled by interactive cli.",
   "homepage": "https://github.com/yapadesouci/musicli",
   "bugs": "https://github.com/yapadesouci/musicli/issues",
@@ -20,7 +20,7 @@
     "cli"
   ],
   "devDependencies": {
-    "babel-core": "^6.7.14",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^7.0.0",
     "babel-preset-es2015": "^6.16.0",
     "del": "^2.2.0",
@@ -31,7 +31,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^2.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.2.0",
     "gulp-istanbul": "^0.10.4",
     "gulp-line-ending-corrector": "^1.0.1",
     "gulp-mocha": "^2.2.0",
@@ -52,14 +52,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.3.5",
+    "bluebird": "^3.5.1",
     "chalk": "^1.1.3",
     "deezer-node-api": "^0.2.2",
-    "jsdom": "^8.4.0",
-    "mplayer": "^2.0.1",
+    "jsdom": "^8.5.0",
+    "mplayer": "^2.1.0",
     "node-localstorage": "^1.3.0",
-    "request": "^2.72.0",
-    "superagent": "^3.5.2",
-    "vorpal": "^1.10.10"
+    "request": "^2.83.0",
+    "superagent": "^3.8.1",
+    "vorpal": "^1.12.0"
   }
 }

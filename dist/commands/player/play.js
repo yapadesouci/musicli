@@ -16,7 +16,10 @@ module.exports = function (app) {
       return;
     }
 
-    if (!app.player.isPaused) {
+    if (app.player.isPaused) {
+      app.player.isPaused = false;
+      app.player.play();
+    } else {
       app.playlist.fetchRandomSong().then(function (songUri) {
         if (!songUri) {
           app.vorpal.log(chalk.red('No song found...'));
@@ -26,9 +29,6 @@ module.exports = function (app) {
 
         app.player.openFile(songUri);
       });
-    } else {
-      app.player.isPaused = false;
-      app.player.play();
     }
 
     cb();
