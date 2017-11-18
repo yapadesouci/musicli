@@ -1,7 +1,7 @@
 'use strict';
 
 var chalk = require('chalk');
-var Spotify = require('spotify');
+var Deezer = require('deezer-node-api');
 
 module.exports = function (app) {
   app.vorpal.command('search <artist...>', 'Search an artist.').action(function (args, cb) {
@@ -13,17 +13,10 @@ module.exports = function (app) {
       return;
     }
 
-    Spotify.search({
-      type: 'artist',
-      query: search
-    }, function (error, result) {
-      if (error) {
-        app.vorpal.log(error);
-        cb();
-        return;
-      }
+    var deezer = new Deezer();
 
-      var artists = result.artists.items.slice(0, 5).map(function (item) {
+    deezer.findArtists(search).then(function (result) {
+      var artists = result.data.slice(0, 5).map(function (item) {
         return item.name;
       }) || [];
 
